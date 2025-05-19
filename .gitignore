@@ -1,3 +1,5 @@
 /venv
 /models
 /tuner_results
+.vscode
+.DS_Store
