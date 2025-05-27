@@ -1,11 +1,11 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_squared_error
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
-from tensorflow.keras.callbacks import EarlyStopping
+import pandas as pd # type: ignore
+import numpy as np # type: ignore
+import matplotlib.pyplot as plt # type: ignore
+from sklearn.preprocessing import MinMaxScaler # type: ignore
+from sklearn.metrics import mean_squared_error # type: ignore
+from tensorflow.keras.models import Sequential # type: ignore
+from tensorflow.keras.layers import LSTM, Dense, Dropout # type: ignore
+from tensorflow.keras.callbacks import EarlyStopping # type: ignore
 
 # ========== Load and prepare data ==========
 df = pd.read_csv("drive/MyDrive/Forecasting-IHSG/dataset/jkse_data_train.csv", parse_dates=["Date"], index_col="Date")
