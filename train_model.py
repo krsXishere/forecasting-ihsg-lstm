@@ -7,9 +7,10 @@ import tensorflow as tf # type: ignore
 from tensorflow import keras # type: ignore
 from tensorflow.keras.models import Sequential # type: ignore
 from tensorflow.keras.layers import LSTM, Dense, Dropout # type: ignore
+from sklearn.metrics import mean_squared_error # type: ignore
 
 # Load and prepare data
-df = pd.read_csv("dataset/jkse_data.csv", parse_dates=["Date"], index_col="Date")
+df = pd.read_csv("dataset/jkse_data_train.csv", parse_dates=["Date"], index_col="Date")
 df = df[['Close']].dropna()
 
 # Scale data
@@ -48,7 +49,7 @@ model.compile(optimizer='adam', loss='mean_squared_error')
 model.summary()
 
 # Train the model
-history = model.fit(X, Y, epochs=60, batch_size=16, validation_split=0.1, verbose=1)
+history = model.fit(X, Y, epochs=75, batch_size=16, validation_split=0.1, verbose=1)
 
 # Make predictions
 predicted = model.predict(X)
@@ -86,15 +87,15 @@ model.save("models/lstm_jkse_model2.h5")
 print("Model berhasil disimpan sebagai lstm_jkse_model.h5")
 
 # Plot for 2024 only
-mask_2024 = df.index[time_step:time_step + len(predicted_prices)].year == 2024
-plt.figure(figsize=(12, 6))
-plt.plot(df.index[time_step:time_step + len(predicted_prices)][mask_2024],
-         actual_prices.flatten()[mask_2024], label="Actual Price")
-plt.plot(df.index[time_step:time_step + len(predicted_prices)][mask_2024],
-         predicted_prices.flatten()[mask_2024], label="Predicted Price")
-plt.legend()
-plt.xlabel("Date")
-plt.ylabel("Stock Price")
-plt.title("Comparison: Actual vs Predicted JKSE Prices in 2024 with LSTM")
-plt.xticks(rotation=45)
-plt.show()
+# mask_2024 = df.index[time_step:time_step + len(predicted_prices)].year == 2024
+# plt.figure(figsize=(12, 6))
+# plt.plot(df.index[time_step:time_step + len(predicted_prices)][mask_2024],
+#          actual_prices.flatten()[mask_2024], label="Actual Price")
+# plt.plot(df.index[time_step:time_step + len(predicted_prices)][mask_2024],
+#          predicted_prices.flatten()[mask_2024], label="Predicted Price")
+# plt.legend()
+# plt.xlabel("Date")
+# plt.ylabel("Stock Price")
+# plt.title("Comparison: Actual vs Predicted JKSE Prices in 2024 with LSTM")
+# plt.xticks(rotation=45)
+# plt.show()

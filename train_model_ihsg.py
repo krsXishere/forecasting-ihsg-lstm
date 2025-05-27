@@ -1,13 +1,13 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.preprocessing import MinMaxScaler
-import tensorflow as tf
-from tensorflow import keras
+import pandas as pd # type: ignore
+import numpy as np # type: ignore
+import matplotlib.pyplot as plt # type: ignore
+import seaborn as sns # type: ignore
+from sklearn.preprocessing import MinMaxScaler # type: ignore
+import tensorflow as tf # type: ignore
+from tensorflow import keras # type: ignore
 from tensorflow.keras.models import Sequential #type: ignore
 from tensorflow.keras.layers import LSTM, Dense, Dropout #type: ignore
-import joblib
+import joblib  # type: ignore
 
 df = pd.read_csv("dataset/jkse_data.csv", parse_dates=["Date"], index_col="Date")
 df = df[['Close']]
